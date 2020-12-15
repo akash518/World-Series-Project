@@ -1,0 +1,92 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class WorldSeries
+{
+   public static void main(String[] args) throws IOException
+   {
+      ArrayList<String> champions = new ArrayList<String>();
+      ArrayList<String> yearholder = new ArrayList<String>();
+      
+      int count;
+      String team;
+      String response = "";
+      
+      Scanner scanner = new Scanner(System.in);
+      
+      champions = TeamFile();
+      team = userinput();
+      
+      champion_team(champions, team);
+      
+      System.out.print("Do you want to search for another team? (Yes, No): ");
+      response = scanner.nextLine();
+      
+      while (response.equals("Yes") || response.equals("yes"))
+      {
+         team = userinput();
+         champion_team(champions, team);
+         
+         System.out.print("Do you want to search for another team? (Yes, No): ");
+         response = scanner.nextLine();
+      }
+   }
+   
+   public static ArrayList<String> TeamFile() throws IOException
+   {
+      ArrayList<String> champions = new ArrayList<String>();
+      String team;
+      
+      File WorldSeriesProgram = new File("WorldSeries.txt");
+      Scanner inputFile = new Scanner(WorldSeriesProgram);
+      
+      while (inputFile.hasNext())
+      {
+         team = inputFile.nextLine();
+         champions.add(team);
+      }
+      
+      inputFile.close();
+      
+      return champions;
+   }
+   
+   public static String userinput()
+   {
+      String team;
+      Scanner keyboard = new Scanner(System.in);
+      
+      System.out.print("Enter the name of a team: ");
+      team = keyboard.nextLine();
+
+      return team;
+   }
+  
+   private static void champion_team(ArrayList<String> champions, String searchteam)
+   {
+      ArrayList<String> yearholder = new ArrayList<String>();
+      int count = 0;
+
+      for (int i = 0; i < champions.size(); i++)
+      {
+         if (champions.get(i).equals(searchteam))
+         {
+            count++;
+         }
+         if (champions.get(i).equals(searchteam))
+         {
+            yearholder.add(champions.get(i + 116));
+         }
+      }
+      if (count == 0)
+      {
+         System.out.println("NO");
+      }
+      else
+      { 
+         System.out.println("The " + searchteam + " has won " + count + " World Series in " + yearholder + ".");
+      }
+   }
+}
