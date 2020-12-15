@@ -86,7 +86,7 @@ public class WorldSeries
       }
       else
       { 
-         System.out.println("The " + searchteam + " has won " + count + " World Series in " + yearholder + ".");
+         System.out.println("The " + searchteam + " have won " + count + " World Series in " + yearholder + ".");
       }
    }
 }
